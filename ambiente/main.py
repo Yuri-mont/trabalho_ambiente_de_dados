@@ -1,13 +1,19 @@
 import pandas as pd
 import mysql.connector as sql
+from sqlalchemy import create_engine
 import csv
 
 def main():
     try:
+
+        engine = create_engine('mysql://root:12345678@localhost/hospital')
+
+        # Connect to the database
+        conn = engine.connect()
         connection = sql.connect(
             host='localhost',
-            user='your_username',
-            password='your_password',
+            user='root',
+            password='',
             database='hospital'
         )
 
@@ -15,7 +21,7 @@ def main():
             print("Connected to MySQL database")
 
             cursor = connection.cursor()
-            query = "SELECT * FROM your_table"
+            query = "SELECT * FROM pessoa"
             cursor.execute(query)
             rows = cursor.fetchall()
             csv_file = "arquivo_da_query_de_exemplo_.csv"
@@ -26,6 +32,10 @@ def main():
                 csv_writer.writerows(rows)
             print(f"Results exported to '{csv_file}'")
 
+            df = pd.read_csv('/trabalho_ambiente_de_dados/tabela_inicial.csv',sep=';')
+            df.to_sql('pessoa',conn,if_exists='append',index=False)
+            print(df)
+
     except sql.Error as e:
         print(f"Error connecting to MySQL database: {e}")
 
@@ -35,9 +45,7 @@ def main():
             connection.close()
             print("MySQL connection is closed")
 
-    df = pd.read_csv('tabela inicial.csv',sep=';')
-    df.to_sql('',connection,if_exists='append')
-    print(df)
+    
 
 if __name__ == '__main__':
     main()
