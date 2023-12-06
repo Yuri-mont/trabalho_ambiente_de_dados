@@ -13,7 +13,7 @@ def main():
         connection = sql.connect(
             host='localhost',
             user='root',
-            password='',
+            password='12345678',
             database='hospital'
         )
 
@@ -24,7 +24,11 @@ def main():
             query = "SELECT * FROM pessoa"
             cursor.execute(query)
             rows = cursor.fetchall()
+            query2 = "select a.id AS 'id do atendimento', p.nome AS 'Nome do Paciente',d.nome AS 'Nome do Medico' from Atendimento a JOIN pessoa p ON a.CPF JOIN Doutores d ON a.CRM = d.CRM;"
+            cursor.execute(query2)
+            rows2 = cursor.fetchall()
             csv_file = "arquivo_da_query_de_exemplo_.csv"
+            csv_file2 = "arquivo_da_query_de_exemplo2_.csv"
 
             with open(csv_file, 'w', newline='') as file:
                 csv_writer = csv.writer(file)
@@ -32,9 +36,15 @@ def main():
                 csv_writer.writerows(rows)
             print(f"Results exported to '{csv_file}'")
 
-            df = pd.read_csv('/trabalho_ambiente_de_dados/tabela_inicial.csv',sep=';')
-            df.to_sql('pessoa',conn,if_exists='append',index=False)
-            print(df)
+            with open(csv_file2, 'w', newline='') as file2:
+                csv_writer = csv.writer(file2)
+                csv_writer.writerow([i[0] for i in cursor.description])  
+                csv_writer.writerows(rows2)
+            print(f"Results exported to '{csv_file2}'")
+
+            #df = pd.read_csv('C:/Users/yuric/OneDrive/Documentos/code/py/trabalho_ambiente_de_dados/tabela_inicial.csv',sep=';')
+            #df.to_sql('pessoa',conn,if_exists='append',index=False)
+            #print(df)
 
     except sql.Error as e:
         print(f"Error connecting to MySQL database: {e}")

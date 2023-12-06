@@ -1,5 +1,13 @@
-CPF,nome,sexo,idade
-987654321, Pedro Oliveira, M, 40
-555666777, Ana Souza, F, 35
-789123456, Lucas Santos, M, 28
-456789123, Sofia Costa, F, 22
+id do atendimento,Nome do Paciente,Nome do Medico
+123456789,John Doe,M,30
+123987456,Lucas coelho,M,21
+156151555,João da Silva,M,35
+333444555,Alice Johnson,F,40
+519759177,Maria Oliveira,F,28
+528288886,Carlos Pereira,M,25
+585875878,Pedro Santos,M,42
+654278597,reino rae,M,22
+666777888,Bob Smith,M,35
+687678688,Ana Souza,F,31
+987654321,Jane Doe,F,25
+999000111,Charlie Brown,M,28
