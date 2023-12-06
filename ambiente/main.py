@@ -42,9 +42,9 @@ def main():
                 csv_writer.writerows(rows2)
             print(f"Results exported to '{csv_file2}'")
 
-            #df = pd.read_csv('C:/Users/yuric/OneDrive/Documentos/code/py/trabalho_ambiente_de_dados/tabela_inicial.csv',sep=';')
-            #df.to_sql('pessoa',conn,if_exists='append',index=False)
-            #print(df)
+            df = pd.read_csv('C:/Users/yuric/OneDrive/Documentos/code/py/trabalho_ambiente_de_dados/tabela_inicial.csv',sep=';')
+            df.to_sql('pessoa',conn,if_exists='append',index=False)
+            print(df)
 
     except sql.Error as e:
         print(f"Error connecting to MySQL database: {e}")
