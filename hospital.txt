@@ -1,0 +1,178 @@
+create database hospital;
+
+use hospital;
+Database changed
+CREATE TABLE pessoa (
+       CPF  INT NOT NULL PRIMARY KEY,
+       nome CHAR(200),
+       sexo ENUM('M', 'F'),
+       idade INT
+   );
+
+CREATE TABLE Hospitais (
+    cadastro INT NOT NULL PRIMARY KEY,
+       CEP int,
+       horario_func time
+   );
+
+create table Doutores(
+    CRM int not null primary key,
+       nome char(200),
+       especialiade char(50)
+   );
+
+CREATE TABLE Atendimento(
+       id INT PRIMARY KEY,
+       CPF INT,
+       CRM INT,
+       cadastro INT,
+       FOREIGN KEY (CPF) REFERENCES pessoa(CPF),
+       FOREIGN KEY (CRM) REFERENCES Doutores(CRM),
+       FOREIGN KEY (cadastro) REFERENCES Hospitais(cadastro)
+   );
+
+
+INSERT INTO Pessoa (CPF, nome, sexo, idade) VALUES (683069259, 'Josilda Campos', 'F', 19);
+INSERT INTO Pessoa (CPF, nome, sexo, idade) VALUES (265470821, 'Artur Plínio Corona de Domingues', 'M', 21);
+INSERT INTO Pessoa (CPF, nome, sexo, idade) VALUES (854636667, 'Fernando Rodrigo Campos', 'M', 23);
+INSERT INTO Pessoa (CPF, nome, sexo, idade) VALUES (511867568, 'Iago Matos de Queirós', 'M', 25);
+INSERT INTO Pessoa (CPF, nome, sexo, idade) VALUES (527309327, 'Marcielle Caldeira', 'F', 27);
+INSERT INTO Pessoa (CPF, nome, sexo, idade) VALUES (452941364, 'Elisa Beltrão', 'F', 29);
+INSERT INTO Pessoa (CPF, nome, sexo, idade) VALUES (105391252, 'Eleriane Olímpia Delatorre de Solano', 'F', 31);
+INSERT INTO Pessoa (CPF, nome, sexo, idade) VALUES (342711285, 'Laura Nádia Branco de Camacho', 'F', 33);
+INSERT INTO Pessoa (CPF, nome, sexo, idade) VALUES (910104858, 'Alma Elizabete de Assunção', 'F', 35);
+INSERT INTO Pessoa (CPF, nome, sexo, idade) VALUES (685087742, 'Emília Verônica Marques Prado de Fraga', 'F', 37);
+INSERT INTO Pessoa (CPF, nome, sexo, idade) VALUES (946877260, 'Joana Melanie Azevedo Fonseca', 'F', 39);
+INSERT INTO Pessoa (CPF, nome, sexo, idade) VALUES (734065415, 'Michele Tábata Barros Bezerra', 'F', 41);
+INSERT INTO Pessoa (CPF, nome, sexo, idade) VALUES (886158214, 'Alessandra Zilda de Esteves', 'F', 43);
+INSERT INTO Pessoa (CPF, nome, sexo, idade) VALUES (107418181, 'Cleuza Samila Leon de Chaves', 'F', 45);
+INSERT INTO Pessoa (CPF, nome, sexo, idade) VALUES (433961007, 'Érica Gigi de Aragão', 'F', 47);
+INSERT INTO Pessoa (CPF, nome, sexo, idade) VALUES (648504100, 'Jussara Bittencourt de Franco', 'F', 49);
+INSERT INTO Pessoa (CPF, nome, sexo, idade) VALUES (147658200, 'Elizabete Joelma Faro Ramires ', 'F', 51);
+INSERT INTO Pessoa (CPF, nome, sexo, idade) VALUES (419324143, 'Madalena Flaviana Bonilha', 'F', 53);
+INSERT INTO Pessoa (CPF, nome, sexo, idade) VALUES (854875964, 'Mia Marcielle Espinoza', 'F', 55);
+
+INSERT INTO Hospitais (cadastro, CEP, horario_func) VALUES (1001, 73406541, '08:00:00');
+INSERT INTO Hospitais (cadastro, CEP, horario_func) VALUES (1002, 26547082, '09:30:00');
+INSERT INTO Hospitais (cadastro, CEP, horario_func) VALUES (1003, 34567898, '07:45:00');
+INSERT INTO Hospitais (cadastro, CEP, horario_func) VALUES (1004, 94567890, '10:15:00');
+INSERT INTO Hospitais (cadastro, CEP, horario_func) VALUES (1005, 25678901, '08:30:00');
+
+INSERT INTO Doutores (CRM, nome, especialiade) VALUES (12345, 'João Silva', 'Cardiologia');
+INSERT INTO Doutores (CRM, nome, especialiade) VALUES (23456, 'Maria Souza', 'Ortopedia');
+INSERT INTO Doutores (CRM, nome, especialiade) VALUES (34567, 'Pedro Santos', 'Dermatologia');
+INSERT INTO Doutores (CRM, nome, especialiade) VALUES (45678, 'Ana Oliveira', 'Pediatria');
+INSERT INTO Doutores (CRM, nome, especialiade) VALUES (56789, 'Carlos Rodrigues', 'Neurologia');
+
+INSERT INTO Atendimento (id, CPF, CRM, cadastro) VALUES (1, 683069259, 12345, 1001);
+INSERT INTO Atendimento (id, CPF, CRM, cadastro) VALUES (2, 265470821, 23456, 1003);
+INSERT INTO Atendimento (id, CPF, CRM, cadastro) VALUES (3, 734065415, 34567, 1003);
+INSERT INTO Atendimento (id, CPF, CRM, cadastro) VALUES (4, 511867568, 45678, 1004);
+INSERT INTO Atendimento (id, CPF, CRM, cadastro) VALUES (5, 527309327, 56789, 1005);
+INSERT INTO Atendimento (id, CPF, CRM, cadastro) VALUES (6, 452941364, 12345, 1001);
+INSERT INTO Atendimento (id, CPF, CRM, cadastro) VALUES (7, 648504100, 23456, 1002);
+INSERT INTO Atendimento (id, CPF, CRM, cadastro) VALUES (8, 342711285, 34567, 1003);
+INSERT INTO Atendimento (id, CPF, CRM, cadastro) VALUES (9, 910104858, 45678, 1004);
+INSERT INTO Atendimento (id, CPF, CRM, cadastro) VALUES (10, 685087742, 56789, 1005);
+INSERT INTO Atendimento (id, CPF, CRM, cadastro) VALUES (11, 946877260, 12345, 1001);
+INSERT INTO Atendimento (id, CPF, CRM, cadastro) VALUES (12, 734065415, 23456, 1002);
+INSERT INTO Atendimento (id, CPF, CRM, cadastro) VALUES (13, 886158214, 34567, 1003);
+INSERT INTO Atendimento (id, CPF, CRM, cadastro) VALUES (14, 107418181, 45678, 1004);
+INSERT INTO Atendimento (id, CPF, CRM, cadastro) VALUES (15, 433961007, 56789, 1005);
+
+#dados iniciais
+
+SHOW TABLES;
++--------------------+
+| Tables_in_hospital |
++--------------------+
+| atendimento        |
+| doutores           |
+| hospitais          |
+| pessoa             |
++--------------------+
+
+mysql> select * from pessoa;
++-----------+----------------------------------------+------+-------+
+| CPF       | nome                                   | sexo | idade |
++-----------+----------------------------------------+------+-------+
+| 105391252 | Eleriane Olímpia Delatorre de Solano   | F    |    31 |
+| 107418181 | Cleuza Samila Leon de Chaves           | F    |    45 |
+| 123456789 | John Doe                               | M    |    30 |
+| 123987456 | Lucas coelho                           | M    |    21 |
+| 147658200 | Elizabete Joelma Faro Ramires          | F    |    51 |
+| 156151555 | João da Silva                          | M    |    35 |
+| 265470821 | Artur Plínio Corona de Domingues       | M    |    21 |
+| 333444555 | Alice Johnson                          | F    |    40 |
+| 342711285 | Laura Nádia Branco de Camacho          | F    |    33 |
+| 419324143 | Madalena Flaviana Bonilha              | F    |    53 |
+| 433961007 | Érica Gigi de Aragão                   | F    |    47 |
+| 452941364 | Elisa Beltrão                          | F    |    29 |
+| 511867568 | Iago Matos de Queirós                  | M    |    25 |
+| 519759177 | Maria Oliveira                         | F    |    28 |
+| 527309327 | Marcielle Caldeira                     | F    |    27 |
+| 528288886 | Carlos Pereira                         | M    |    25 |
+| 585875878 | Pedro Santos                           | M    |    42 |
+| 648504100 | Jussara Bittencourt de Franco          | F    |    49 |
+| 654278597 | reino rae                              | M    |    22 |
+| 666777888 | Bob Smith                              | M    |    35 |
+| 683069259 | Josilda Campos                         | F    |    19 |
+| 685087742 | Emília Verônica Marques Prado de Fraga | F    |    37 |
+| 687678688 | Ana Souza                              | F    |    31 |
+| 734065415 | Michele Tábata Barros Bezerra          | F    |    41 |
+| 750826603 | Luzia Abreu de Carmona                 | F    |    18 |
+| 854636667 | Fernando Rodrigo Campos                | M    |    23 |
+| 854875964 | Mia Marcielle Espinoza                 | F    |    55 |
+| 886158214 | Alessandra Zilda de Esteves            | F    |    43 |
+| 910104858 | Alma Elizabete de Assunção             | F    |    35 |
+| 946877260 | Joana Melanie Azevedo Fonseca          | F    |    39 |
+| 987654321 | Jane Doe                               | F    |    25 |
+| 999000111 | Charlie Brown                          | M    |    28 |
++-----------+----------------------------------------+------+-------+
+32 rows in set (0.00 sec)
+
+mysql> select * from hospitais;
++----------+----------+--------------+
+| cadastro | CEP      | horario_func |
++----------+----------+--------------+
+|     1001 | 12345678 | 08:00:00     |
+|     1002 | 23456789 | 09:30:00     |
+|     1003 | 34567890 | 10:45:00     |
+|     1004 | 45678901 | 12:15:00     |
+|     1005 | 56789012 | 14:00:00     |
++----------+----------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from doutores;
++-------+------------------+--------------+
+| CRM   | nome             | especialiade |
++-------+------------------+--------------+
+| 12345 | João Silva       | Cardiologia  |
+| 23456 | Maria Souza      | Ortopedia    |
+| 34567 | Pedro Santos     | Dermatologia |
+| 45678 | Ana Oliveira     | Pediatria    |
+| 56789 | Carlos Rodrigues | Neurologia   |
++-------+------------------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from Atendimento;
++----+-----------+-------+----------+
+| id | CPF       | CRM   | cadastro |
++----+-----------+-------+----------+
+|  1 | 683069259 | 12345 |     1001 |
+|  2 | 265470821 | 23456 |     1003 |
+|  3 | 734065415 | 34567 |     1003 |
+|  4 | 511867568 | 45678 |     1004 |
+|  5 | 527309327 | 56789 |     1005 |
+|  6 | 452941364 | 12345 |     1001 |
+|  7 | 648504100 | 23456 |     1002 |
+|  8 | 342711285 | 34567 |     1003 |
+|  9 | 910104858 | 45678 |     1004 |
+| 10 | 685087742 | 56789 |     1005 |
+| 11 | 946877260 | 12345 |     1001 |
+| 12 | 734065415 | 23456 |     1002 |
+| 13 | 886158214 | 34567 |     1003 |
+| 14 | 107418181 | 45678 |     1004 |
+| 15 | 433961007 | 56789 |     1005 |
++----+-----------+-------+----------+
+15 rows in set (0.00 sec)
